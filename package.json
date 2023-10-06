@@ -16,5 +16,8 @@
     "app"
   ],
   "author": "Abdul Hamid",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "parcel": "^2.9.3"
+  }
 }
