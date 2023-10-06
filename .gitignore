@@ -1,0 +1,10 @@
+# Ignore node_modules directory
+node_modules/
+
+# Ignore built files and directories
+dist/
+build/
+.parcel-cache/
+
+# Ignore the project details 
+project-details
