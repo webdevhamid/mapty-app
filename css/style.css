@@ -1,0 +1,184 @@
+:root {
+  --primary-bg: #aaaaaa;
+  --secondary-bg: #2d3439;
+  --color-light: #dee2e6;
+  --color-light-2: #42484d;
+  --color-succes: #22c55e;
+  --color-warning: #f59f00;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: 0;
+  border: none;
+  text-decoration: none;
+  list-style: none;
+}
+
+.workouts::-webkit-scrollbar {
+  width: 6px;
+}
+
+.workouts::-webkit-scrollbar-thumb {
+  background-color: #798186ed;
+  border-radius: 5px;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-size: 1.8rem;
+  font-family: Arial, Helvetica, sans-serif;
+  overflow: hidden;
+}
+
+main {
+  display: flex;
+  height: 100vh;
+  padding: 3rem;
+}
+main .logo {
+  width: 6.5rem;
+  height: 6.5rem;
+  margin: 0 auto 3rem;
+}
+img {
+  width: 100%;
+  height: 100%;
+}
+
+main .sidebar {
+  background: var(--secondary-bg);
+  padding: 3rem;
+  color: var(--primary-bg);
+  display: flex;
+  flex-direction: column;
+  flex-basis: 25%;
+}
+
+.copyright {
+  margin-top: auto;
+  text-align: center;
+}
+
+main #map {
+  background: var(--primary-bg);
+  flex-basis: 75%;
+}
+
+.copyright-name {
+  color: var(--color-warning);
+  cursor: pointer;
+}
+
+/* FORM DESIGN */
+
+.form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  transition: all 0.5s;
+  background: var(--color-light-2);
+  padding: 3rem 2rem;
+  border-radius: 0.7rem;
+  gap: 1rem 1.5rem;
+  transition: all 0.5s;
+}
+
+.form.hidden {
+  opacity: 0;
+  transform: translateX(-110%);
+  height: 0;
+}
+
+.form-row {
+  display: flex;
+  align-items: center;
+}
+.form-row-label {
+  flex-basis: 50%;
+  align-self: start;
+}
+.form-input {
+  padding: 0.5rem 1.1rem;
+  border-radius: 0.3rem;
+  background: var(--color-light);
+  font-size: 1.5rem;
+  font-family: inherit;
+  transition: all 0.5s;
+  flex-basis: 50%;
+  width: 100%;
+}
+
+.form-input:focus {
+  background: #fff;
+}
+
+.form-row-hidden {
+  display: none;
+}
+
+/* Workout */
+.workout {
+  padding: 2rem 2.5rem;
+  background: var(--color-light-2);
+  border-radius: 0.7rem;
+  border-left: 0.5rem solid var(--color-succes);
+  cursor: pointer;
+}
+
+.workout-wrap {
+  margin-top: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 1.6rem;
+}
+
+.workout-title {
+  color: var(--color-light);
+  font-size: 1.8rem;
+}
+
+.workout-value {
+  color: var(--color-light);
+}
+
+.workout-unit {
+  font-size: 1.4rem;
+}
+
+ul.workouts li {
+  margin: 1rem 0;
+}
+
+ul.workouts {
+  height: 80rem;
+  overflow: auto;
+}
+
+.workout-cycling {
+  border-left: 0.5rem solid var(--color-warning);
+}
+
+@media only screen and (max-width: 1024px) {
+  main {
+    padding: 0;
+  }
+  main .sidebar {
+    flex-basis: 40%;
+  }
+  main .map {
+    flex-basis: 60%;
+  }
+
+  main .form-row-label {
+    font-size: 1.4rem;
+  }
+}
