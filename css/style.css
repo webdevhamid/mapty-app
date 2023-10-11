@@ -89,12 +89,15 @@ main #map {
   border-radius: 0.7rem;
   gap: 1rem 1.5rem;
   transition: all 0.5s;
+  height: 12rem;
 }
 
 .form.hidden {
   opacity: 0;
-  transform: translateX(-110%);
   height: 0;
+  transform: translateY(-50rem);
+  margin-bottom: 0;
+  padding: 0 2.25rem;
 }
 
 .form-row {
@@ -121,6 +124,10 @@ main #map {
 }
 
 .form-row-hidden {
+  display: none;
+}
+
+.form-btn {
   display: none;
 }
 
@@ -165,6 +172,33 @@ ul.workouts {
 
 .workout-cycling {
   border-left: 0.5rem solid var(--color-warning);
+}
+
+.workout-running {
+  border-left: 0.5rem solid var(--color-succes);
+}
+
+/* Styling leaflet popup */
+.leaflet-popup .leaflet-popup-content-wrapper {
+  background-color: var(--secondary-bg);
+  color: var(--color-light);
+  border-radius: 5px;
+  padding-right: 0.6rem;
+}
+
+.leaflet-popup .leaflet-popup-content {
+  font-size: 1.5rem;
+}
+
+.leaflet-popup .leaflet-popup-tip {
+  background-color: var(--secondary-bg);
+}
+
+.running-popup .leaflet-popup-content-wrapper {
+  border-left: 5px solid var(--color-succes);
+}
+.cycling-popup .leaflet-popup-content-wrapper {
+  border-left: 5px solid var(--color-warning);
 }
 
 @media only screen and (max-width: 1024px) {
