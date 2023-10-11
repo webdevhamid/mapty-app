@@ -45,8 +45,6 @@ class Running extends Workout {
 
   _calcPace() {
     this.pace = this.distance / this.duration;
-
-    return this.pace;
   }
 }
 
@@ -65,7 +63,6 @@ class Cycling extends Workout {
   _calcSpeed() {
     // spedd = km/h
     this.speed = this.distance / (this.duration / 60);
-    return this.speed;
   }
 }
 
