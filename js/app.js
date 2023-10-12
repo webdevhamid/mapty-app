@@ -73,6 +73,7 @@ const inputDuration = document.querySelector('.form-input-duration');
 const inputCadence = document.querySelector('.form-input-cadence');
 const inputElevationGain = document.querySelector('.form-input-elevation');
 const workoutType = document.querySelector('.form-input-type');
+const workoutContainer = document.querySelector('.workouts');
 
 class App {
   #map;
@@ -91,6 +92,12 @@ class App {
 
     // Render workout on submit
     form.addEventListener('submit', this._renderWorkout.bind(this));
+
+    // Map Animaton by clicking on the sidebar workout
+    workoutContainer.addEventListener('click', this._moveToPopup.bind(this));
+
+    // Get workouts from local storage
+    this._getLocalStorage();
   }
 
   _getLocation() {
@@ -118,7 +125,11 @@ class App {
         '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
     }).addTo(this.#map);
 
-    this.#map.on('click', this._showForm.bind(this));
+    // Show form on click to the map
+    this.#map.on('dblclick', this._showForm.bind(this));
+
+    // Display saved workouts as a marker to the map
+    this.#workouts.forEach((workout) => this._renderMarker(workout));
   }
 
   _showForm(popupEvent) {
@@ -197,6 +208,9 @@ class App {
 
     // Render new workout on the map
     this._renderNewWorkout(workout);
+
+    // Set workouts to localstorage
+    this._setLocalStorage();
   }
 
   _renderMarker(workout) {
@@ -255,7 +269,9 @@ class App {
         <div class="workout-details">
           <span class="workout-icon">⚡️</span>
           <span class="workout-value">${
-            workout.type === 'running' ? workout.pace : workout.speed
+            workout.type === 'running'
+              ? workout.pace.toFixed(2)
+              : workout.speed.toFixed(2)
           }</span>
           <span class="workout-unit">${
             workout.type === 'running' ? 'MIN/KM' : 'KM/H'
@@ -281,6 +297,47 @@ class App {
 
     // Render workout list on the sidebar
     form.insertAdjacentHTML('afterend', workoutEl);
+  }
+
+  _moveToPopup(e) {
+    const workoutEl = e.target.closest('.workout');
+
+    // Guard Clause
+    if (!workoutEl) return;
+
+    const currentWorkout = this.#workouts.find(
+      (workout) => workout.id === workoutEl.dataset.id
+    );
+    this.#map.setView(currentWorkout.coords, this.#mapZoomLevel, {
+      animate: true,
+      pan: {
+        duration: 1.0,
+      },
+    });
+  }
+
+  _setLocalStorage() {
+    localStorage.setItem('workouts', JSON.stringify(this.#workouts));
+  }
+
+  _getLocalStorage() {
+    const savedWorkouts = JSON.parse(localStorage.getItem('workouts'));
+
+    // Return immediately if there is no saved workouts
+    if (!savedWorkouts) return;
+
+    // Reassigning the #workouts array
+    this.#workouts = savedWorkouts;
+
+    this.#workouts.forEach((workout) => {
+      // Render saved workout to the sidebar
+      this._renderNewWorkout(workout);
+    });
+  }
+
+  clearLocalStorage() {
+    localStorage.clear();
+    location.reload();
   }
 }
 

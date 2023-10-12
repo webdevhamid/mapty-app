@@ -90,6 +90,7 @@ main #map {
   gap: 1rem 1.5rem;
   transition: all 0.5s;
   height: 12rem;
+  margin-bottom: 1rem;
 }
 
 .form.hidden {
@@ -109,10 +110,10 @@ main #map {
   align-self: start;
 }
 .form-input {
-  padding: 0.5rem 1.1rem;
+  padding: 0.3rem 1.1rem;
   border-radius: 0.3rem;
   background: var(--color-light);
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   font-family: inherit;
   transition: all 0.5s;
   flex-basis: 50%;
@@ -162,7 +163,10 @@ main #map {
 }
 
 ul.workouts li {
-  margin: 1rem 0;
+  margin-bottom: 1rem;
+}
+ul.workouts li:last-child {
+  margin-bottom: 0;
 }
 
 ul.workouts {
@@ -206,10 +210,10 @@ ul.workouts {
     padding: 0;
   }
   main .sidebar {
-    flex-basis: 40%;
+    flex-basis: 50%;
   }
-  main .map {
-    flex-basis: 60%;
+  main #map {
+    flex-basis: 50%;
   }
 
   main .form-row-label {
