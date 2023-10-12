@@ -105,10 +105,14 @@ main #map {
   display: flex;
   align-items: center;
 }
+
 .form-row-label {
   flex-basis: 50%;
-  align-self: start;
+  align-self: center;
+  font-size: 1.5rem;
+  font-weight: 600;
 }
+
 .form-input {
   padding: 0.3rem 1.1rem;
   border-radius: 0.3rem;
