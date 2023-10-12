@@ -27,7 +27,7 @@ class Workout {
     ];
     this.description = `${this.type[0].toUpperCase()}${this.type.slice(1)} on ${
       months[this.date.getMonth()]
-    } ${this.date.getDay()}`;
+    } ${this.date.getDay()} ${this.date.getFullYear()}`;
   }
 }
 
